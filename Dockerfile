@@ -13,6 +13,5 @@ RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
 
-# Create a user for the app
-# RUN adduser -D user
-# USER user
+# Use the root user
+USER root
