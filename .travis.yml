@@ -1,6 +1,6 @@
 language: pyhton
 python:
-  - "3.6"
+  - "3.4"
 
 services:
   - docker
