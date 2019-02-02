@@ -12,7 +12,3 @@ RUN pip install -r /requirements.txt
 RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
-
-# Use the root user
-RUN useradd -D user
-USER user
