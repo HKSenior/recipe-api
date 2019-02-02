@@ -14,4 +14,5 @@ WORKDIR /app
 COPY ./app /app
 
 # Use the root user
-USER root
+RUN useradd -D user
+USER user
