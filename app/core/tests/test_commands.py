@@ -11,7 +11,6 @@ class CommandTests(TestCase):
         """
             Test waiting for the database when it is available.
         """
-
         with patch('django.db.utils.ConnectionHandler.__getitem__') as gi:
             # Set the function to return True
             gi.return_value = True
@@ -27,7 +26,6 @@ class CommandTests(TestCase):
         """
             Test waiting for the database.
         """
-
         with patch('django.db.utils.ConnectionHandler.__getitem__') as gi:
             # Raise the OperationalError on the first 5 attempts
             # and then allow django to connect to the database on
