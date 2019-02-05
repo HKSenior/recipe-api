@@ -2,10 +2,9 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
 
-from .models import User
+from core import models
 
 
-@admin.register(User)
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
     list_display = ['email', 'name']
@@ -36,3 +35,7 @@ class UserAdmin(BaseUserAdmin):
             }
         ),
     )
+
+
+admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Tag)

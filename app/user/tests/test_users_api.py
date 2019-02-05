@@ -28,7 +28,6 @@ class PublicUserApiTests(TestCase):
             Test whether creating a user with a
             valid payload is successful.
         """
-
         # Payload
         payload = {
             'email': 'testing@gmail.com',
@@ -49,7 +48,6 @@ class PublicUserApiTests(TestCase):
         """
             Test creating a user that already exists fails.
         """
-
         # Payload
         payload = {
             'email': 'testing@gmail.com',
@@ -67,7 +65,6 @@ class PublicUserApiTests(TestCase):
         """
             Test that the password is more than 8 characters.
         """
-
         # Payload
         payload = {
             'email': 'testing@gmail.com',
@@ -88,7 +85,6 @@ class PublicUserApiTests(TestCase):
         """
             Test if a token is successful created for the user.
         """
-
         # Payload
         payload = {
             'email': 'testing@gmail.com',
@@ -108,7 +104,6 @@ class PublicUserApiTests(TestCase):
             Test if a token is not created when invalid
             credentials are given.
         """
-
         # Create the user and incorrect payload
         create_user(email='testing@gmail.com', password='santa4521!')
         payload = {
@@ -128,7 +123,6 @@ class PublicUserApiTests(TestCase):
             Test that a token is not created if
             the user doesn't exist.
         """
-
         # Payload
         payload = {
             'email': 'testing@gmail.com',
@@ -146,7 +140,6 @@ class PublicUserApiTests(TestCase):
         """
             Make the email and password required.
         """
-
         # Send PoST request with bad payload
         res = self.client.post(TOKEN_URL, {'email': 'one', 'password': ''})
 
@@ -158,7 +151,6 @@ class PublicUserApiTests(TestCase):
         """
             Test authentication is required for users.
         """
-
         # Make a POST request
         res = self.client.get(ME_URL)
 
@@ -170,7 +162,6 @@ class PrivateUserApiTests(TestCase):
     """
         Test API requests that require authentication.
     """
-
     def setUp(self):
         # Create the user
         self.user = create_user(
@@ -186,7 +177,6 @@ class PrivateUserApiTests(TestCase):
         """
             Test retrieving profile of a logged in user.
         """
-
         # Make a POST request
         res = self.client.get(ME_URL)
 
@@ -201,7 +191,6 @@ class PrivateUserApiTests(TestCase):
         """
             Test that POST is not allowed on the me url.
         """
-
         # Make a POST request
         res = self.client.post(ME_URL, {})
 
@@ -212,7 +201,6 @@ class PrivateUserApiTests(TestCase):
         """
             Test updating the user profile for authenticated users.
         """
-
         # Payload
         payload = {
             'name': 'Brian',

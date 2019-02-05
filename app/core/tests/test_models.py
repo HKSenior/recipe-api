@@ -1,6 +1,15 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+from core import models
+
+
+def sample_user(email='testing@gmail.com', password='santa4521!'):
+    """
+        Create a sample user.
+    """
+    return get_user_model().objects.create_user(email, password)
+
 
 class ModelTests(TestCase):
 
@@ -9,7 +18,6 @@ class ModelTests(TestCase):
             Test whether or not creating a new user
             with an email is successful.
         """
-
         # User information
         email = 'testing@gmail.com'
         password = 'testingModels123'
@@ -29,7 +37,6 @@ class ModelTests(TestCase):
             Test whether or no the email for a new user
             is normalized.
         """
-
         # User information
         email = 'testing@GMAIL.COM'
 
@@ -47,7 +54,6 @@ class ModelTests(TestCase):
             Test whether an error is raised when a user
             is created without an email.
         """
-
         # Test for the ValueError being raised
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(
@@ -59,7 +65,6 @@ class ModelTests(TestCase):
         """
             Test creating a new superuser.
         """
-
         # Create a superuser
         user = get_user_model().objects.create_superuser(
             email='testing@gmail.com',
@@ -69,3 +74,16 @@ class ModelTests(TestCase):
         # Assertions
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+    def test_tag_str_(self):
+        """
+            Test the tag string representation.
+        """
+        # Create a tag
+        tag = models.Tag.objects.create(
+            user=sample_user(),
+            name='halal'
+        )
+
+        # Assertion
+        self.assertEqual(str(tag), tag.name)

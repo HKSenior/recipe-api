@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
+from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -9,7 +10,6 @@ class UserManager(BaseUserManager):
         """
             Creates and saves a new user.
         """
-
         # Check if the email was given
         if not email:
             raise ValueError('Users must have an email address')
@@ -26,7 +26,6 @@ class UserManager(BaseUserManager):
         """
             Creates and saves a new superuser.
         """
-
         # Create a normal user and set to a superuser
         user = self.create_user(email, password)
         user.is_staff = True
@@ -42,7 +41,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         Custom user model that supports using email
         instead of username.
     """
-
     # Model fields
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, unique=True)
@@ -54,3 +52,17 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     # Set the email as the username
     USERNAME_FIELD = 'email'
+
+
+class Tag(models.Model):
+    """
+        Tag to be used for recipes.
+    """
+    name = models.CharField(max_length=50)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
