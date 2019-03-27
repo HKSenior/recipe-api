@@ -1,5 +1,5 @@
 import uuid
-import os
+from os import path
 
 from django.db import models
 from django.contrib.auth.models import (
@@ -14,7 +14,7 @@ def recipe_image_file_path(instance, fileName):
     """
     ext = fileName.split('.')[-1]
     fileName = f'{uuid.uuid4()}.{ext}'
-    return os.path.join('uploads/recipe/', fileName)
+    return path.join('uploads/recipe/', fileName)
 
 
 class UserManager(BaseUserManager):
