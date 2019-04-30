@@ -1,18 +1,19 @@
-language: pyhton
-python:
-  - "3.4"
+if: branch = master
+  language: pyhton
+  python:
+    - "3.4"
 
-services:
-  - docker
+  services:
+    - docker
 
-env:
-  - DOCKER_COMPOSE_VERSION=1.23.2
+  env:
+    - DOCKER_COMPOSE_VERSION=1.23.2
 
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+  before_install:
+    - sudo rm /usr/local/bin/docker-compose
+    - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+    - chmod +x docker-compose
+    - sudo mv docker-compose /usr/local/bin
 
-script: 
-  - docker-compose run app sh -c "python manage.py test && flake8"
+  script: 
+    - docker-compose run app sh -c "python manage.py test && flake8"

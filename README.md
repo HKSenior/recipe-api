@@ -1,4 +1,9 @@
-<h1 align="center">Recipe API</h1>
+<div align="center">
+    <h1>Recipe API</h1>
+    <a href="https://imgur.com/77FIV0U">
+        <img src="https://i.imgur.com/77FIV0U.jpg" title="source: imgur.com" />
+    </a>
+</div>
 
 <p align="center">
     An API for storing, creating and saving images of your cooking.
